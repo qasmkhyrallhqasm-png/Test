@@ -62,7 +62,11 @@ lessons_data = [
     (1, "🐍 مقدمة في بايثون", 
      """<b>📚 ما هي لغة بايثون؟</b>
 
-بايثون هي لغة برمجة عالية المستوى، سهلة التعلم
+بايثون هي لغة برمجة عالية المستوى، سهلة التعلم، وتستخدم في:
+• تطوير الويب
+• تحليل البيانات
+• الذكاء الاصطناعي
+• أتمتة المهام
 
 <b>✨ مميزات بايثون:</b>
 • سهلة القراءة والكتابة
@@ -90,17 +94,114 @@ lessons_data = [
 • int - الأعداد الصحيحة (10, 20, 100)
 • float - الأعداد العشرية (3.14, 2.5)
 • str - النصوص ("سلام", "Python")
-• bool - القيم المنطقية (True, False)""",
+• bool - القيم المنطقية (True, False)
+
+<b>💡 أمثلة:</b>
+<code>name = "قاسم"        # نص
+age = 25              # عدد صحيح
+price = 99.99         # عدد عشري
+is_student = True     # منطقي</code>""",
      """<b>💻 أمثلة عملية:</b>
 
-<code>name = "قاسم"
-age = 25
-price = 99.99
-is_student = True</code>""",
+<code># تعريف المتغيرات
+x = 10
+y = 20
+z = x + y
+
+# طباعة النتيجة
+print("ناتج الجمع:", z)
+
+# تغيير قيمة المتغير
+x = 50
+print("القيمة الجديدة:", x)</code>""",
      "أي من التالي يعتبر نوع بيانات نصي في بايثون؟",
      "int|float|str|bool",
      "str",
      15),
+    
+    (3, "🔢 العمليات الحسابية", 
+     """<b>📚 العمليات الحسابية في بايثون:</b>
+
+<b>➕ عمليات الجمع والطرح:</b>
+• + (جمع)
+• - (طرح)
+• * (ضرب)
+• / (قسمة)
+
+<b>🧮 أمثلة:</b>
+<code>result1 = 10 + 5    # النتيجة: 15
+result2 = 20 - 8    # النتيجة: 12
+result3 = 7 * 6     # النتيجة: 42
+result4 = 15 / 3    # النتيجة: 5.0</code>
+
+<b>📌 عمليات متقدمة:</b>
+• // (قسمة صحيحة)
+• % (باقي القسمة)
+• ** (الأس)</code>""",
+     """<b>💻 برنامج حساب متوسط الدرجات:</b>
+
+<code># درجات الطالب
+grade1 = 85
+grade2 = 90
+grade3 = 78
+
+# حساب المجموع والمتوسط
+total = grade1 + grade2 + grade3
+average = total / 3
+
+# طباعة النتائج
+print("المجموع:", total)
+print("المتوسط:", average)</code>""",
+     "ما هو ناتج العملية 15 // 4 في بايثون؟",
+     "3.75|3|4|3.0",
+     "3",
+     15),
+    
+    (4, "🎯 الجمل الشرطية", 
+     """<b>📚 الجمل الشرطية (if-else)</b>
+
+الجمل الشرطية تتحكم في تنفيذ الكود بناءً على شروط معينة.
+
+<b>🔹 تركيب if:</b>
+<code>if condition:
+    # الكود المنفذ عند تحقق الشرط</code>
+
+<b>🔹 تركيب if-else:</b>
+<code>if condition:
+    # الكود عند تحقق الشرط
+else:
+    # الكود عند عدم تحقق الشرط</code>
+
+<b>🔹 تركيب if-elif-else:</b>
+<code>if condition1:
+    # شرط 1
+elif condition2:
+    # شرط 2
+else:
+    # باقي الحالات</code>""",
+     """<b>💻 مثال: نظام الدرجات</b>
+
+<code># إدخال درجة الطالب
+score = 85
+
+# تحديد التقدير
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+elif score >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+# طباعة النتيجة
+print(f"تقديرك هو: {grade}")</code>""",
+     "أي من التالي يمثل جملة شرطية صحيحة في بايثون؟",
+     "if x > 5:|if x > 5 then:|if (x > 5):|if x > 5: then",
+     "if x > 5:",
+     20),
 ]
 
 for lesson in lessons_data:
@@ -150,8 +251,8 @@ def get_main_keyboard():
     return {
         "inline_keyboard": [
             [{"text": "📚 الدروس", "callback_data": "lessons"}],
-            [{"text": "❓ المساعدة", "callback_data": "help"},
-             {"text": "📊 التقدم", "callback_data": "progress"}]
+            [{"text": "⚙️ الإعدادات", "callback_data": "settings"},
+             {"text": "💾 حفظ", "callback_data": "save"}]
         ]
     }
 
@@ -189,20 +290,18 @@ while True:
                     
                     welcome_text = f"""🐍 <b>مرحباً بك {first_name}!</b>
 
-📚 <b>ما الذي سنتعلمه؟</b>
+📚 <b>ماذا ستتعلم؟</b>
 ✓ أساسيات البرمجة
 ✓ المتغيرات والبيانات
-✓ الجمل الشرطية
-✓ الحلقات التكرارية
-✓ والكثير من المهارات
+✓ الجمل الشرطية والحلقات
+✓ التوابع والقوائم
+✓ التعامل مع الملفات
+✓ معالجة الأخطاء
 
-✨ <b>المميزات:</b>
-• دروس تفاعلية
-• اختبارات تقييم
-• نظام نقاط ومستويات
-• محرر كود مباشر
+⭐ <b>المستوى:</b> {user['level']}
+💰 <b>النقاط:</b> {user['points']}
 
-<b>استخدم الأزرار للبدء!</b>"""
+استخدم الأزرار للبدء!"""
                     
                     send_message(chat_id, welcome_text, reply_markup=get_main_keyboard())
             
@@ -215,7 +314,12 @@ while True:
                 
                 if data == "back_to_main":
                     user = get_user(user_id)
-                    welcome_text = "🐍 <b>القائمة الرئيسية</b>\n\nاختر ما تريد:"
+                    welcome_text = f"""🐍 <b>القائمة الرئيسية</b>
+
+⭐ <b>المستوى:</b> {user['level']}
+💰 <b>النقاط:</b> {user['points']}
+
+اختر ما تريد:"""
                     requests.post(f"{URL}/editMessageText", json={
                         "chat_id": chat_id,
                         "message_id": message_id,
@@ -229,45 +333,14 @@ while True:
 
 1️⃣ 🐍 مقدمة في بايثون
 2️⃣ 📦 المتغيرات والبيانات
+3️⃣ 🔢 العمليات الحسابية
+4️⃣ 🎯 الجمل الشرطية
 
 اختر درس لقراءته"""
                     requests.post(f"{URL}/editMessageText", json={
                         "chat_id": chat_id,
                         "message_id": message_id,
                         "text": lesson_text,
-                        "parse_mode": "HTML",
-                        "reply_markup": json.dumps(get_back_button())
-                    }).json()
-                
-                elif data == "help":
-                    help_text = f"""❓ <b>المساعدة والدعم</b>
-
-📚 <b>كيفية استخدام البوت:</b>
-1. اضغط على 'الدروس'
-2. اختر الدرس المناسب
-3. اقرأ المحتوى وحل الاختبار
-
-👨‍💻 <b>للاستفسار:</b> @{DEV_USERNAME}
-📢 <b>القناة:</b> {DEV_CHANNEL}"""
-                    requests.post(f"{URL}/editMessageText", json={
-                        "chat_id": chat_id,
-                        "message_id": message_id,
-                        "text": help_text,
-                        "parse_mode": "HTML",
-                        "reply_markup": json.dumps(get_back_button())
-                    }).json()
-                
-                elif data == "progress":
-                    user = get_user(user_id)
-                    progress_text = f"""📊 <b>تقدمك</b>
-
-⭐ <b>المستوى:</b> {user['level']}
-💰 <b>النقاط:</b> {user['points']}
-📚 <b>الدروس المكتملة:</b> {len(user['completed_lessons'].split(',')) if user['completed_lessons'] else 0}"""
-                    requests.post(f"{URL}/editMessageText", json={
-                        "chat_id": chat_id,
-                        "message_id": message_id,
-                        "text": progress_text,
                         "parse_mode": "HTML",
                         "reply_markup": json.dumps(get_back_button())
                     }).json()
