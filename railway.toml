@@ -1,0 +1,5 @@
+[build]
+provider = "nixpacks"
+
+[deploy]
+startCommand = "python bot.py"
